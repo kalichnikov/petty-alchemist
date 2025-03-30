@@ -1,25 +1,23 @@
-[gd_scene load_steps=4 format=3 uid="uid://bd3wf2un2wylp"]
+[gd_scene load_steps=5 format=3 uid="uid://bd3wf2un2wylp"]
 
-[ext_resource type="Texture2D" uid="uid://bv7k04n45lbok" path="res://Assets/Potions/RedSolution.png" id="1_kln2b"]
-[ext_resource type="Texture2D" uid="uid://bhayjrwuj42tv" path="res://Assets/Potions/GreenSolution.png" id="2_rgh2o"]
-[ext_resource type="Texture2D" uid="uid://cr7ykd7sgkbky" path="res://Assets/Potions/BlueSolution.png" id="3_pbw6q"]
+[ext_resource type="Script" uid="uid://bus5a5wncn305" path="res://Scenes/main.gd" id="1_idj7w"]
+[ext_resource type="PackedScene" uid="uid://dqiqkjkeqkakk" path="res://Scenes/Methods/agitation.tscn" id="2_kln2b"]
+[ext_resource type="PackedScene" uid="uid://c4mymdkxrhbci" path="res://Scenes/Items/red_solution.tscn" id="3_rgh2o"]
+[ext_resource type="PackedScene" uid="uid://cwx21h4j7sjew" path="res://Scenes/Items/blue_solution.tscn" id="4_rgh2o"]
 
-[node name="Node2D" type="Node2D"]
+[node name="Laboratory" type="Node2D"]
+script = ExtResource("1_idj7w")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(640, 360)
 
-[node name="RedSolution" type="Sprite2D" parent="."]
-position = Vector2(556, 360)
-scale = Vector2(4, 4)
-texture = ExtResource("1_kln2b")
+[node name="Table" type="Node2D" parent="."]
 
-[node name="GreenSolution" type="Sprite2D" parent="."]
-position = Vector2(638, 360)
-scale = Vector2(4, 4)
-texture = ExtResource("2_rgh2o")
+[node name="Agitation" parent="Table" instance=ExtResource("2_kln2b")]
+position = Vector2(398, 220)
 
-[node name="BlueSolution" type="Sprite2D" parent="."]
-position = Vector2(719, 360)
-scale = Vector2(4, 4)
-texture = ExtResource("3_pbw6q")
+[node name="RedSolution" parent="." instance=ExtResource("3_rgh2o")]
+position = Vector2(1227, 671)
+
+[node name="BlueSolution" parent="." instance=ExtResource("4_rgh2o")]
+position = Vector2(1133, 678)

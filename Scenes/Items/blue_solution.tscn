@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://cwx21h4j7sjew"]
+
+[ext_resource type="Script" uid="uid://ify3yhs1rnef" path="res://Scenes/Items/BlueSolution.gd" id="1_uylsm"]
+[ext_resource type="Texture2D" uid="uid://cr7ykd7sgkbky" path="res://Assets/Potions/BlueSolution.png" id="2_in327"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vi05m"]
+radius = 30.0
+
+[node name="BlueSolution" type="Node2D"]
+script = ExtResource("1_uylsm")
+ItemName = "Blue Solution"
+ItemIdentity = 7
+CanBeAgitated = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_in327")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_vi05m")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]
