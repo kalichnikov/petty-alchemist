@@ -1,0 +1,79 @@
+[gd_scene load_steps=7 format=3 uid="uid://cc1cexf5ofle7"]
+
+[ext_resource type="Texture2D" uid="uid://dtbm1db8jgneo" path="res://Assets/explosion.jpg" id="1_a801j"]
+[ext_resource type="AudioStream" uid="uid://cpali0td0skgn" path="res://Assets/Sounds/Retro Explosion Short 01.wav" id="2_4okmj"]
+[ext_resource type="Script" uid="uid://c84p17ag1pei3" path="res://Scenes/explosion.gd" id="2_k2xjm"]
+
+[sub_resource type="Animation" id="Animation_bvnfy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_k2xjm"]
+resource_name = "explosionanimation"
+length = 0.51
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.400662, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05), Vector2(0.2, 0.2), Vector2(0.150507, 0.150507)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.28319]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_61lnk"]
+_data = {
+&"RESET": SubResource("Animation_bvnfy"),
+&"explosionanimation": SubResource("Animation_k2xjm")
+}
+
+[node name="explosion" type="Sprite2D"]
+scale = Vector2(1e-05, 1e-05)
+texture = ExtResource("1_a801j")
+script = ExtResource("2_k2xjm")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_61lnk")
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_4okmj")

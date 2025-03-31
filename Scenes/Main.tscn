@@ -11,13 +11,27 @@ script = ExtResource("1_idj7w")
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(640, 360)
 
-[node name="Table" type="Node2D" parent="."]
-
-[node name="Agitation" parent="Table" instance=ExtResource("2_kln2b")]
+[node name="Agitation" parent="." instance=ExtResource("2_kln2b")]
 position = Vector2(398, 220)
 
 [node name="RedSolution" parent="." instance=ExtResource("3_rgh2o")]
-position = Vector2(1227, 671)
+position = Vector2(525, 543)
+
+[node name="RedSolution2" parent="." instance=ExtResource("3_rgh2o")]
+position = Vector2(731, 543)
+
+[node name="RedSolution3" parent="." instance=ExtResource("3_rgh2o")]
+position = Vector2(642, 539)
 
 [node name="BlueSolution" parent="." instance=ExtResource("4_rgh2o")]
-position = Vector2(1133, 678)
+position = Vector2(421, 547)
+
+[node name="BlueSolution2" parent="." instance=ExtResource("4_rgh2o")]
+position = Vector2(283, 543)
+
+[node name="BlueSolution3" parent="." instance=ExtResource("4_rgh2o")]
+position = Vector2(173, 539)
+
+[node name="Inventory" type="Node2D" parent="."]
+
+[connection signal="agit_complete" from="Agitation" to="." method="_on_agitation_agit_complete"]

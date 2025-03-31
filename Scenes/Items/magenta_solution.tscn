@@ -1,26 +1,25 @@
-[gd_scene load_steps=4 format=3 uid="uid://cwx21h4j7sjew"]
+[gd_scene load_steps=4 format=3 uid="uid://cmv7cdblden5p"]
 
-[ext_resource type="Script" uid="uid://ify3yhs1rnef" path="res://Scenes/Items/BlueSolution.gd" id="1_uylsm"]
-[ext_resource type="Texture2D" uid="uid://cr7ykd7sgkbky" path="res://Assets/Potions/BlueSolution.png" id="2_in327"]
+[ext_resource type="Script" uid="uid://brnhjn8w82rh8" path="res://Scenes/Items/magenta_solution.gd" id="1_15un6"]
+[ext_resource type="Texture2D" uid="uid://cxgsbpn0h31xg" path="res://Assets/Potions/MagentaSolution.png" id="1_uw3uc"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_vi05m"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_15un6"]
 radius = 30.0
 
-[node name="BlueSolution" type="Node2D"]
-script = ExtResource("1_uylsm")
-ItemName = "Blue Solution"
-ItemIdentity = 7
+[node name="MagentaSolution" type="Node2D"]
+script = ExtResource("1_15un6")
+ItemName = "Magenta Solution"
+ItemIdentity = 21
 CanBeAgitated = true
 CanBeDistilled = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_in327")
+texture = ExtResource("1_uw3uc")
 
 [node name="Area2D" type="Area2D" parent="." groups=["craftingobject"]]
-collision_layer = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("CircleShape2D_vi05m")
+shape = SubResource("CircleShape2D_15un6")
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]
