@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dqiqkjkeqkakk"]
+[gd_scene load_steps=12 format=3 uid="uid://dqiqkjkeqkakk"]
 
 [ext_resource type="Texture2D" uid="uid://v03kt4bxoy3n" path="res://Assets/stirring.jpg" id="1_rgwja"]
 [ext_resource type="Script" uid="uid://bopk50cfesp2d" path="res://Scenes/Methods/agitation.gd" id="1_yijso"]
@@ -6,6 +6,8 @@
 [ext_resource type="Script" uid="uid://bci3qr825nfi2" path="res://Scenes/Methods/agitationslot2.gd" id="3_t1agf"]
 [ext_resource type="Texture2D" uid="uid://bqgryoompxxqe" path="res://Assets/infobutton.png" id="5_1e3g1"]
 [ext_resource type="Texture2D" uid="uid://bffnfwo6xxpjt" path="res://Assets/combinebutton.png" id="6_fxxva"]
+[ext_resource type="AudioStream" uid="uid://dqy12qmcib80d" path="res://Assets/Sounds/stir.wav" id="7_ur11e"]
+[ext_resource type="AudioStream" uid="uid://bmty0pek5hg6l" path="res://Assets/Sounds/Retro FootStep Grass 01.wav" id="8_ww7hs"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yijso"]
 size = Vector2(64, 64)
@@ -98,6 +100,14 @@ offset_right = 160.0
 offset_bottom = 127.0
 scale = Vector2(0.6, 0.6)
 texture_normal = ExtResource("6_fxxva")
+
+[node name="Sounds" type="Node" parent="."]
+
+[node name="Stir" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("7_ur11e")
+
+[node name="Open" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("8_ww7hs")
 
 [connection signal="toggled" from="AgitationButton" to="." method="_on_agitation_button_toggled"]
 [connection signal="mouse_entered" from="Crafting Slots/Slot 1" to="." method="_on_static_body_2d_mouse_entered"]

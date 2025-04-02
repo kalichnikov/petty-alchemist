@@ -1,37 +1,305 @@
-[gd_scene load_steps=5 format=3 uid="uid://bd3wf2un2wylp"]
+[gd_scene load_steps=7 format=3 uid="uid://bd3wf2un2wylp"]
 
 [ext_resource type="Script" uid="uid://bus5a5wncn305" path="res://Scenes/main.gd" id="1_idj7w"]
 [ext_resource type="PackedScene" uid="uid://dqiqkjkeqkakk" path="res://Scenes/Methods/agitation.tscn" id="2_kln2b"]
-[ext_resource type="PackedScene" uid="uid://c4mymdkxrhbci" path="res://Scenes/Items/red_solution.tscn" id="3_rgh2o"]
-[ext_resource type="PackedScene" uid="uid://cwx21h4j7sjew" path="res://Scenes/Items/blue_solution.tscn" id="4_rgh2o"]
+[ext_resource type="Texture2D" uid="uid://bgucv17xl6eu8" path="res://Assets/wood texture.jpg" id="2_rgh2o"]
+[ext_resource type="Script" uid="uid://wayquuwb565l" path="res://Scenes/MiscScripts/Inventory1.gd" id="4_pbw6q"]
+[ext_resource type="AudioStream" uid="uid://njmuhnoyyriv" path="res://Assets/Sounds/Retro Success Melody 01 - sawtooth lead 1.wav" id="5_pbw6q"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pbw6q"]
+size = Vector2(64, 64)
 
 [node name="Laboratory" type="Node2D"]
 script = ExtResource("1_idj7w")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(628, 426)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("2_rgh2o")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(640, 360)
 
 [node name="Agitation" parent="." instance=ExtResource("2_kln2b")]
-position = Vector2(398, 220)
+position = Vector2(185, 294)
 
-[node name="RedSolution" parent="." instance=ExtResource("3_rgh2o")]
-position = Vector2(525, 543)
+[node name="InventorySlots" type="Node2D" parent="."]
+position = Vector2(4, 0)
 
-[node name="RedSolution2" parent="." instance=ExtResource("3_rgh2o")]
-position = Vector2(731, 543)
+[node name="Inventory1" type="StaticBody2D" parent="InventorySlots"]
+position = Vector2(40, 676)
+script = ExtResource("4_pbw6q")
 
-[node name="RedSolution3" parent="." instance=ExtResource("3_rgh2o")]
-position = Vector2(642, 539)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InventorySlots/Inventory1"]
+shape = SubResource("RectangleShape2D_pbw6q")
 
-[node name="BlueSolution" parent="." instance=ExtResource("4_rgh2o")]
-position = Vector2(421, 547)
+[node name="ColorRect" type="ColorRect" parent="InventorySlots/Inventory1"]
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+mouse_filter = 2
+color = Color(0.637843, 0.637843, 0.637843, 1)
 
-[node name="BlueSolution2" parent="." instance=ExtResource("4_rgh2o")]
-position = Vector2(283, 543)
+[node name="Inventory2" type="StaticBody2D" parent="InventorySlots"]
+position = Vector2(110, 676)
+script = ExtResource("4_pbw6q")
 
-[node name="BlueSolution3" parent="." instance=ExtResource("4_rgh2o")]
-position = Vector2(173, 539)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InventorySlots/Inventory2"]
+shape = SubResource("RectangleShape2D_pbw6q")
 
-[node name="Inventory" type="Node2D" parent="."]
+[node name="ColorRect" type="ColorRect" parent="InventorySlots/Inventory2"]
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+mouse_filter = 2
+color = Color(0.637843, 0.637843, 0.637843, 1)
+
+[node name="Inventory3" type="StaticBody2D" parent="InventorySlots"]
+position = Vector2(180, 676)
+script = ExtResource("4_pbw6q")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InventorySlots/Inventory3"]
+shape = SubResource("RectangleShape2D_pbw6q")
+
+[node name="ColorRect" type="ColorRect" parent="InventorySlots/Inventory3"]
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+mouse_filter = 2
+color = Color(0.637843, 0.637843, 0.637843, 1)
+
+[node name="Inventory4" type="StaticBody2D" parent="InventorySlots"]
+position = Vector2(250, 676)
+script = ExtResource("4_pbw6q")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InventorySlots/Inventory4"]
+shape = SubResource("RectangleShape2D_pbw6q")
+
+[node name="ColorRect" type="ColorRect" parent="InventorySlots/Inventory4"]
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+mouse_filter = 2
+color = Color(0.637843, 0.637843, 0.637843, 1)
+
+[node name="Inventory5" type="StaticBody2D" parent="InventorySlots"]
+position = Vector2(320, 676)
+script = ExtResource("4_pbw6q")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InventorySlots/Inventory5"]
+shape = SubResource("RectangleShape2D_pbw6q")
+
+[node name="ColorRect" type="ColorRect" parent="InventorySlots/Inventory5"]
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+mouse_filter = 2
+color = Color(0.637843, 0.637843, 0.637843, 1)
+
+[node name="Inventory6" type="StaticBody2D" parent="InventorySlots"]
+position = Vector2(390, 676)
+script = ExtResource("4_pbw6q")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InventorySlots/Inventory6"]
+shape = SubResource("RectangleShape2D_pbw6q")
+
+[node name="ColorRect" type="ColorRect" parent="InventorySlots/Inventory6"]
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+mouse_filter = 2
+color = Color(0.637843, 0.637843, 0.637843, 1)
+
+[node name="Inventory7" type="StaticBody2D" parent="InventorySlots"]
+position = Vector2(460, 676)
+script = ExtResource("4_pbw6q")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InventorySlots/Inventory7"]
+shape = SubResource("RectangleShape2D_pbw6q")
+
+[node name="ColorRect" type="ColorRect" parent="InventorySlots/Inventory7"]
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+mouse_filter = 2
+color = Color(0.637843, 0.637843, 0.637843, 1)
+
+[node name="Inventory8" type="StaticBody2D" parent="InventorySlots"]
+position = Vector2(530, 676)
+script = ExtResource("4_pbw6q")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InventorySlots/Inventory8"]
+shape = SubResource("RectangleShape2D_pbw6q")
+
+[node name="ColorRect" type="ColorRect" parent="InventorySlots/Inventory8"]
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+mouse_filter = 2
+color = Color(0.637843, 0.637843, 0.637843, 1)
+
+[node name="Inventory9" type="StaticBody2D" parent="InventorySlots"]
+position = Vector2(600, 676)
+script = ExtResource("4_pbw6q")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InventorySlots/Inventory9"]
+shape = SubResource("RectangleShape2D_pbw6q")
+
+[node name="ColorRect" type="ColorRect" parent="InventorySlots/Inventory9"]
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+mouse_filter = 2
+color = Color(0.637843, 0.637843, 0.637843, 1)
+
+[node name="Inventory10" type="StaticBody2D" parent="InventorySlots"]
+position = Vector2(670, 676)
+script = ExtResource("4_pbw6q")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InventorySlots/Inventory10"]
+shape = SubResource("RectangleShape2D_pbw6q")
+
+[node name="ColorRect" type="ColorRect" parent="InventorySlots/Inventory10"]
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+mouse_filter = 2
+color = Color(0.637843, 0.637843, 0.637843, 1)
+
+[node name="Inventory11" type="StaticBody2D" parent="InventorySlots"]
+position = Vector2(740, 676)
+script = ExtResource("4_pbw6q")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InventorySlots/Inventory11"]
+shape = SubResource("RectangleShape2D_pbw6q")
+
+[node name="ColorRect" type="ColorRect" parent="InventorySlots/Inventory11"]
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+mouse_filter = 2
+color = Color(0.637843, 0.637843, 0.637843, 1)
+
+[node name="Inventory12" type="StaticBody2D" parent="InventorySlots"]
+position = Vector2(810, 676)
+script = ExtResource("4_pbw6q")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InventorySlots/Inventory12"]
+shape = SubResource("RectangleShape2D_pbw6q")
+
+[node name="ColorRect" type="ColorRect" parent="InventorySlots/Inventory12"]
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+mouse_filter = 2
+color = Color(0.637843, 0.637843, 0.637843, 1)
+
+[node name="Inventory13" type="StaticBody2D" parent="InventorySlots"]
+position = Vector2(880, 675)
+script = ExtResource("4_pbw6q")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InventorySlots/Inventory13"]
+shape = SubResource("RectangleShape2D_pbw6q")
+
+[node name="ColorRect" type="ColorRect" parent="InventorySlots/Inventory13"]
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+mouse_filter = 2
+color = Color(0.637843, 0.637843, 0.637843, 1)
+
+[node name="Inventory14" type="StaticBody2D" parent="InventorySlots"]
+position = Vector2(950, 675)
+script = ExtResource("4_pbw6q")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InventorySlots/Inventory14"]
+shape = SubResource("RectangleShape2D_pbw6q")
+
+[node name="ColorRect" type="ColorRect" parent="InventorySlots/Inventory14"]
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+mouse_filter = 2
+color = Color(0.637843, 0.637843, 0.637843, 1)
+
+[node name="Inventory15" type="StaticBody2D" parent="InventorySlots"]
+position = Vector2(1020, 675)
+script = ExtResource("4_pbw6q")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InventorySlots/Inventory15"]
+shape = SubResource("RectangleShape2D_pbw6q")
+
+[node name="ColorRect" type="ColorRect" parent="InventorySlots/Inventory15"]
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+mouse_filter = 2
+color = Color(0.637843, 0.637843, 0.637843, 1)
+
+[node name="Inventory16" type="StaticBody2D" parent="InventorySlots"]
+position = Vector2(1090, 675)
+script = ExtResource("4_pbw6q")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InventorySlots/Inventory16"]
+shape = SubResource("RectangleShape2D_pbw6q")
+
+[node name="ColorRect" type="ColorRect" parent="InventorySlots/Inventory16"]
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+mouse_filter = 2
+color = Color(0.637843, 0.637843, 0.637843, 1)
+
+[node name="Inventory17" type="StaticBody2D" parent="InventorySlots"]
+position = Vector2(1160, 675)
+script = ExtResource("4_pbw6q")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InventorySlots/Inventory17"]
+shape = SubResource("RectangleShape2D_pbw6q")
+
+[node name="ColorRect" type="ColorRect" parent="InventorySlots/Inventory17"]
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+mouse_filter = 2
+color = Color(0.637843, 0.637843, 0.637843, 1)
+
+[node name="Inventory18" type="StaticBody2D" parent="InventorySlots"]
+position = Vector2(1230, 675)
+script = ExtResource("4_pbw6q")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InventorySlots/Inventory18"]
+shape = SubResource("RectangleShape2D_pbw6q")
+
+[node name="ColorRect" type="ColorRect" parent="InventorySlots/Inventory18"]
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+mouse_filter = 2
+color = Color(0.637843, 0.637843, 0.637843, 1)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_pbw6q")
+
+[node name="CenterReference" type="Node2D" parent="."]
+position = Vector2(640, 360)
 
 [connection signal="agit_complete" from="Agitation" to="." method="_on_agitation_agit_complete"]

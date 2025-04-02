@@ -1,30 +1,29 @@
-[gd_scene load_steps=5 format=3 uid="uid://c4mymdkxrhbci"]
+[gd_scene load_steps=5 format=3 uid="uid://cm4oo15xddcx1"]
 
-[ext_resource type="Script" uid="uid://gqmd7ebk7ylw" path="res://Scenes/Items/RedSolution.gd" id="1_5xw4e"]
-[ext_resource type="Texture2D" uid="uid://bv7k04n45lbok" path="res://Assets/Potions/RedSolution.png" id="2_0pjbk"]
-[ext_resource type="AudioStream" uid="uid://cff82wbf4qj24" path="res://Assets/Sounds/put on table.wav" id="3_0pjbk"]
+[ext_resource type="Script" uid="uid://bqpftsf0d2fx5" path="res://Scenes/Items/cyan_solution.gd" id="1_hxx8b"]
+[ext_resource type="AudioStream" uid="uid://cff82wbf4qj24" path="res://Assets/Sounds/put on table.wav" id="2_hxx8b"]
+[ext_resource type="Texture2D" uid="uid://c3apqo40cuhct" path="res://Assets/Potions/CyanSolution.png" id="2_jgrg2"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_5xw4e"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_jgrg2"]
 radius = 30.0
 
-[node name="RedSolution" type="Node2D"]
-script = ExtResource("1_5xw4e")
-ItemName = "Red Solution"
-ItemIdentity = 3
+[node name="CyanSolution" type="Node2D"]
+script = ExtResource("1_hxx8b")
+ItemName = "Cyan Solution"
+ItemIdentity = 35
 CanBeAgitated = true
 CanBeDistilled = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_0pjbk")
+texture = ExtResource("2_jgrg2")
 
 [node name="Area2D" type="Area2D" parent="." groups=["craftingobject"]]
-collision_layer = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("CircleShape2D_5xw4e")
+shape = SubResource("CircleShape2D_jgrg2")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_0pjbk")
+stream = ExtResource("2_hxx8b")
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]

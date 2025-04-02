@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://cmv7cdblden5p"]
+[gd_scene load_steps=5 format=3 uid="uid://cmv7cdblden5p"]
 
 [ext_resource type="Script" uid="uid://brnhjn8w82rh8" path="res://Scenes/Items/magenta_solution.gd" id="1_15un6"]
 [ext_resource type="Texture2D" uid="uid://cxgsbpn0h31xg" path="res://Assets/Potions/MagentaSolution.png" id="1_uw3uc"]
+[ext_resource type="AudioStream" uid="uid://cff82wbf4qj24" path="res://Assets/Sounds/put on table.wav" id="3_1sxub"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_15un6"]
 radius = 30.0
@@ -20,6 +21,9 @@ texture = ExtResource("1_uw3uc")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_15un6")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_1sxub")
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]

@@ -32,16 +32,16 @@ func _process(_delta: float) -> void:
 			else:
 				tween.tween_property(self,"global_position",initialPos,0.2).set_ease(Tween.EASE_OUT)
 
-#these two funcs ensure only picks up item player is trying to pick up
+
 func _on_area_2d_mouse_entered() -> void:
 	if not global.is_dragging:
 		draggable = true
 		scale = Vector2(1.05, 1.05)
-
 func _on_area_2d_mouse_exited() -> void:
 	if not global.is_dragging:
 		draggable = false
 		scale = Vector2(1, 1)
+
 
 func _on_area_2d_body_entered(body: StaticBody2D) -> void:
 	#detects when object is placed near crafting slot

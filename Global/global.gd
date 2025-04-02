@@ -2,6 +2,10 @@ extends Node
 
 var is_dragging : bool = false
 var phase1dict = {3: "red_solution", 5: "green_solution", 7: "blue_solution", 11: "brimstone", 15: "yellow_solution", 21: "magenta_solution", 35: "cyan_solution", 105: "white_solution", 163: "white_solution", 231: "white_solution", 315: "red_perditio", 385: "white_solution", 525: "green_perditio", 735: "blue_perditio", 1155: "white_solution", 1575: "blue_vitae", 2205: "green_vitae", 3465: "red_solution", 3675: "red_vitae", 5755: "green_solution", 8085: "blue_solution", 11025: "brimstone", 17325: "blue_brimstone", 24255: "green_brimstone", 40425: "red_brimstone", 1157625: "aqua_vitae"}
+# variables for character starts. If a var is set to "true" the player gets the character modifier.
+var char_recipes: bool = false
+var char_material: bool = false
+var char_patience: bool = false
 
 func _ready() -> void:
 	pass

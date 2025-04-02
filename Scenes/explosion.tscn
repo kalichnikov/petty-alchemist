@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://cc1cexf5ofle7"]
 
 [ext_resource type="Texture2D" uid="uid://dtbm1db8jgneo" path="res://Assets/explosion.jpg" id="1_a801j"]
-[ext_resource type="AudioStream" uid="uid://cpali0td0skgn" path="res://Assets/Sounds/Retro Explosion Short 01.wav" id="2_4okmj"]
 [ext_resource type="Script" uid="uid://c84p17ag1pei3" path="res://Scenes/explosion.gd" id="2_k2xjm"]
+[ext_resource type="AudioStream" uid="uid://ctc2iwasn3qlt" path="res://Assets/Sounds/deltarune explosion.wav" id="3_4okmj"]
 
 [sub_resource type="Animation" id="Animation_bvnfy"]
 length = 0.001
@@ -76,4 +76,4 @@ libraries = {
 }
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("2_4okmj")
+stream = ExtResource("3_4okmj")

@@ -32,7 +32,6 @@ func _process(_delta: float) -> void:
 			else:
 				tween.tween_property(self,"global_position",initialPos,0.2).set_ease(Tween.EASE_OUT)
 
-#these two funcs ensure only picks up item player is trying to pick up
 func _on_area_2d_mouse_entered() -> void:
 	if not global.is_dragging:
 		draggable = true
@@ -49,16 +48,17 @@ func _on_area_2d_body_entered(body: StaticBody2D) -> void:
 		is_inside_droppable = true
 		body.modulate = Color(Color.DARK_GRAY, 1)
 		body_ref = body
+
 func _on_area_2d_body_exited(body: StaticBody2D) -> void:
 	#detects when object leaves crafting slot
 	if body.is_in_group("Droppable"):
 		is_inside_droppable = false
 		body.modulate = Color(Color.LIGHT_GRAY, 0.7)
 
-
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.is_in_group("craftingobject"):
 		overlapping = true
+
 func _on_area_2d_area_exited(area: Area2D) -> void:
 	if area.is_in_group("craftingobject"):
 		overlapping = false

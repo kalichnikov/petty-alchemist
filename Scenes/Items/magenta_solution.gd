@@ -26,6 +26,7 @@ func _process(_delta: float) -> void:
 		elif Input.is_action_just_released("click"):
 			global.is_dragging = false
 			var tween = get_tree().create_tween()
+			$AudioStreamPlayer.play()
 			if is_inside_droppable and overlapping == false:
 				tween.tween_property(self,"position",body_ref.global_position,0.2).set_ease(Tween.EASE_OUT)
 			else:

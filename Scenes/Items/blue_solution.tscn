@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://cwx21h4j7sjew"]
+[gd_scene load_steps=5 format=3 uid="uid://cwx21h4j7sjew"]
 
 [ext_resource type="Script" uid="uid://ify3yhs1rnef" path="res://Scenes/Items/BlueSolution.gd" id="1_uylsm"]
 [ext_resource type="Texture2D" uid="uid://cr7ykd7sgkbky" path="res://Assets/Potions/BlueSolution.png" id="2_in327"]
+[ext_resource type="AudioStream" uid="uid://cff82wbf4qj24" path="res://Assets/Sounds/put on table.wav" id="3_in327"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vi05m"]
 radius = 30.0
@@ -21,6 +22,9 @@ collision_layer = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_vi05m")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_in327")
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]
