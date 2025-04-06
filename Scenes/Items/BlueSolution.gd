@@ -55,7 +55,7 @@ func _on_area_2d_body_exited(body: StaticBody2D) -> void:
 		is_inside_droppable = false
 		body.modulate = Color(Color.LIGHT_GRAY, 0.7)
 
-
+#used to try to prevent items being dropped in a slot that is occupied
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.is_in_group("craftingobject"):
 		overlapping = true

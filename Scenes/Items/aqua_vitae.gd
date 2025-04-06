@@ -6,6 +6,8 @@ extends Node2D
 @export var CanBeAgitated : bool
 @export var CanBeDistilled: bool
 @export var CanBeInfused : bool
+@export var infIsMetal : bool
+@export var infIsInfusive : bool
 var draggable = false
 var is_inside_droppable = false
 var body_ref

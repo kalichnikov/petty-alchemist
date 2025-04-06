@@ -22,10 +22,10 @@ texture = ExtResource("2_rgh2o")
 position = Vector2(640, 360)
 
 [node name="Agitation" parent="." instance=ExtResource("2_kln2b")]
-position = Vector2(185, 294)
+position = Vector2(185, 200)
 
 [node name="distillation" parent="." instance=ExtResource("4_v1gob")]
-position = Vector2(570, 294)
+position = Vector2(570, 200)
 
 [node name="InventorySlots" type="Node2D" parent="."]
 position = Vector2(4, 0)

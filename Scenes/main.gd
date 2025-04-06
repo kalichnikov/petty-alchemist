@@ -10,8 +10,9 @@ var loadcrate = load(cratepath)
 var phase2progress : int = 0
 var phase3progress : int = 0
 
-
 func _ready() -> void:
+	#sets inventoryzone color
+	$"Inventory Zone/ColorRect".modulate = Color(Color.LIGHT_GRAY, 0.7)
 	#makes later phase methods invisible to start
 	#$distillation.visible = false
 	#script for spawning player starting materials

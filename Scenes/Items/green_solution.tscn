@@ -2,10 +2,8 @@
 
 [ext_resource type="Script" uid="uid://d1uuwsg1ngo31" path="res://Scenes/Items/green_solution.gd" id="1_177sg"]
 [ext_resource type="Texture2D" uid="uid://bhayjrwuj42tv" path="res://Assets/Potions/GreenSolution.png" id="1_mcpay"]
+[ext_resource type="Shape2D" uid="uid://cbs5qsojtmqui" path="res://Scenes/Items/Itemcollisionshape.tres" id="3_2243s"]
 [ext_resource type="AudioStream" uid="uid://cff82wbf4qj24" path="res://Assets/Sounds/put on table.wav" id="3_l3432"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_177sg"]
-radius = 30.0
 
 [node name="GreenSolution" type="Node2D"]
 script = ExtResource("1_177sg")
@@ -20,7 +18,7 @@ texture = ExtResource("1_mcpay")
 [node name="Area2D" type="Area2D" parent="." groups=["craftingobject"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("CircleShape2D_177sg")
+shape = ExtResource("3_2243s")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_l3432")

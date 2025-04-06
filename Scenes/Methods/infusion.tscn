@@ -1,0 +1,200 @@
+[gd_scene load_steps=14 format=3 uid="uid://db1is6fkmi64n"]
+
+[ext_resource type="Script" uid="uid://cob8apg87ekfg" path="res://Scenes/Methods/infusion.gd" id="1_nuufq"]
+[ext_resource type="Texture2D" uid="uid://cmmelxi63lg3f" path="res://Assets/infuse.png" id="1_rr7wp"]
+[ext_resource type="Texture2D" uid="uid://bqgryoompxxqe" path="res://Assets/infobutton.png" id="2_nuufq"]
+[ext_resource type="Texture2D" uid="uid://bffnfwo6xxpjt" path="res://Assets/combinebutton.png" id="3_ehifk"]
+[ext_resource type="AudioStream" uid="uid://c5jrn48f2em32" path="res://Assets/Sounds/liquid pour.wav" id="4_whe5g"]
+[ext_resource type="AudioStream" uid="uid://bmty0pek5hg6l" path="res://Assets/Sounds/Retro FootStep Grass 01.wav" id="5_pbrrl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wmcnd"]
+size = Vector2(64, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d4q6w"]
+size = Vector2(64, 64)
+
+[sub_resource type="LabelSettings" id="LabelSettings_4w354"]
+font_size = 23
+
+[sub_resource type="LabelSettings" id="LabelSettings_bqtll"]
+
+[sub_resource type="Animation" id="Animation_p3r4a"]
+resource_name = "NoEffectFadeOut"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("No Effect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2, 4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("No Effect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_r1vgy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("No Effect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("No Effect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_snplm"]
+_data = {
+&"NoEffectFadeOut": SubResource("Animation_p3r4a"),
+&"RESET": SubResource("Animation_r1vgy")
+}
+
+[node name="Infusion" type="Node2D"]
+script = ExtResource("1_nuufq")
+
+[node name="InfusionButton" type="TextureButton" parent="."]
+offset_left = -65.0
+offset_top = -65.0
+offset_right = 160.0
+offset_bottom = 160.0
+scale = Vector2(0.6, 0.6)
+toggle_mode = true
+texture_normal = ExtResource("1_rr7wp")
+
+[node name="Crafting Slots" type="Node2D" parent="."]
+
+[node name="Slot 1" type="StaticBody2D" parent="Crafting Slots" groups=["CanBeDroppable", "Droppable"]]
+position = Vector2(-125, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Crafting Slots/Slot 1"]
+shape = SubResource("RectangleShape2D_wmcnd")
+
+[node name="ColorRect" type="ColorRect" parent="Crafting Slots/Slot 1"]
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+color = Color(0.639216, 0.639216, 0.639216, 1)
+
+[node name="Label" type="Label" parent="Crafting Slots/Slot 1"]
+offset_left = -32.0
+offset_top = -57.0
+offset_right = 13.0
+offset_bottom = -34.0
+text = "Metal"
+
+[node name="Slot 2" type="StaticBody2D" parent="Crafting Slots" groups=["CanBeDroppable", "Droppable"]]
+position = Vector2(130, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Crafting Slots/Slot 2"]
+shape = SubResource("RectangleShape2D_wmcnd")
+
+[node name="ColorRect" type="ColorRect" parent="Crafting Slots/Slot 2"]
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+color = Color(0.639216, 0.639216, 0.639216, 1)
+
+[node name="Label" type="Label" parent="Crafting Slots/Slot 2"]
+offset_left = -32.0
+offset_top = -57.0
+offset_right = 13.0
+offset_bottom = -34.0
+text = "Infusive"
+
+[node name="Detectors" type="Node2D" parent="Crafting Slots"]
+
+[node name="InfSlot1Detector" type="Area2D" parent="Crafting Slots/Detectors"]
+position = Vector2(-125, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Crafting Slots/Detectors/InfSlot1Detector"]
+shape = SubResource("RectangleShape2D_d4q6w")
+
+[node name="InfSlot2Detector" type="Area2D" parent="Crafting Slots/Detectors"]
+position = Vector2(130, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Crafting Slots/Detectors/InfSlot2Detector"]
+shape = SubResource("RectangleShape2D_d4q6w")
+
+[node name="InfusionLabel" type="Label" parent="."]
+offset_left = -61.0
+offset_top = -99.0
+offset_right = 30.0
+offset_bottom = -67.0
+text = "Infusion"
+label_settings = SubResource("LabelSettings_4w354")
+
+[node name="InfoButton" type="TextureButton" parent="."]
+offset_left = 75.0
+offset_top = -96.0
+offset_right = 125.0
+offset_bottom = -46.0
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("2_nuufq")
+
+[node name="CombineButton" type="TextureButton" parent="."]
+offset_left = -65.0
+offset_top = 77.0
+offset_right = 160.0
+offset_bottom = 127.0
+scale = Vector2(0.6, 0.6)
+texture_normal = ExtResource("3_ehifk")
+
+[node name="Sounds" type="Node" parent="."]
+
+[node name="Infuse" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("4_whe5g")
+
+[node name="Open" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("5_pbrrl")
+
+[node name="No Effect" type="Label" parent="."]
+offset_left = -37.5
+offset_top = 125.0
+offset_right = 37.5
+offset_bottom = 148.0
+text = "No Effect!"
+label_settings = SubResource("LabelSettings_bqtll")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_snplm")
+}
+
+[connection signal="toggled" from="InfusionButton" to="." method="_on_infusion_button_toggled"]
+[connection signal="area_entered" from="Crafting Slots/Detectors/InfSlot1Detector" to="." method="_on_inf_slot_1_detector_area_entered"]
+[connection signal="area_exited" from="Crafting Slots/Detectors/InfSlot1Detector" to="." method="_on_inf_slot_1_detector_area_exited"]
+[connection signal="area_entered" from="Crafting Slots/Detectors/InfSlot2Detector" to="." method="_on_inf_slot_2_detector_area_entered"]
+[connection signal="area_exited" from="Crafting Slots/Detectors/InfSlot2Detector" to="." method="_on_inf_slot_2_detector_area_exited"]
+[connection signal="pressed" from="CombineButton" to="." method="_on_combine_button_pressed"]

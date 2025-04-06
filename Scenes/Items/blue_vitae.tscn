@@ -3,9 +3,7 @@
 [ext_resource type="Script" uid="uid://dasx128tc4b6p" path="res://Scenes/Items/blue_vitae.gd" id="1_12kts"]
 [ext_resource type="Texture2D" uid="uid://eoirj0200b7b" path="res://Assets/Potions/BlueVitae.png" id="1_c3nh8"]
 [ext_resource type="AudioStream" uid="uid://cff82wbf4qj24" path="res://Assets/Sounds/put on table.wav" id="2_12kts"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_c3nh8"]
-radius = 30.0
+[ext_resource type="Shape2D" uid="uid://cbs5qsojtmqui" path="res://Scenes/Items/Itemcollisionshape.tres" id="3_0k7hk"]
 
 [node name="BlueVitae" type="Node2D"]
 script = ExtResource("1_12kts")
@@ -13,6 +11,7 @@ ItemName = "Blue Vitae"
 ItemIdentity = 1575
 CanBeDistilled = true
 CanBeInfused = true
+infIsInfusive = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_c3nh8")
@@ -20,7 +19,7 @@ texture = ExtResource("1_c3nh8")
 [node name="Area2D" type="Area2D" parent="." groups=["craftingobject"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("CircleShape2D_c3nh8")
+shape = ExtResource("3_0k7hk")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_12kts")

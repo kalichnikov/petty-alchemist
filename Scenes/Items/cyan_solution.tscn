@@ -3,9 +3,7 @@
 [ext_resource type="Script" uid="uid://bqpftsf0d2fx5" path="res://Scenes/Items/cyan_solution.gd" id="1_hxx8b"]
 [ext_resource type="AudioStream" uid="uid://cff82wbf4qj24" path="res://Assets/Sounds/put on table.wav" id="2_hxx8b"]
 [ext_resource type="Texture2D" uid="uid://c3apqo40cuhct" path="res://Assets/Potions/CyanSolution.png" id="2_jgrg2"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_jgrg2"]
-radius = 30.0
+[ext_resource type="Shape2D" uid="uid://cbs5qsojtmqui" path="res://Scenes/Items/Itemcollisionshape.tres" id="3_jgrg2"]
 
 [node name="CyanSolution" type="Node2D"]
 script = ExtResource("1_hxx8b")
@@ -20,7 +18,7 @@ texture = ExtResource("2_jgrg2")
 [node name="Area2D" type="Area2D" parent="." groups=["craftingobject"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("CircleShape2D_jgrg2")
+shape = ExtResource("3_jgrg2")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_hxx8b")

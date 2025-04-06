@@ -7,6 +7,7 @@ extends Node2D
 @export var CanBeInfused : bool
 @export var infIsMetal : bool
 @export var infIsInfusive : bool
+@export_range(0, 5) var metalClass : int
 var draggable = false
 var is_inside_droppable = false
 var body_ref
@@ -38,15 +39,14 @@ func _process(_delta: float) -> void:
 func _on_area_2d_mouse_entered() -> void:
 	if not global.is_dragging:
 		draggable = true
-		scale = Vector2(1.05, 1.05)
+		scale = Vector2(0.3, 0.3)
 func _on_area_2d_mouse_exited() -> void:
 	if not global.is_dragging:
 		draggable = false
-		scale = Vector2(1, 1)
+		scale = Vector2(0.25, 0.25)
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	#detects when object is placed near crafting slot
 	if body.is_in_group("Droppable"):
 		is_inside_droppable = true
 		body.modulate = Color(Color.DARK_GRAY, 1)

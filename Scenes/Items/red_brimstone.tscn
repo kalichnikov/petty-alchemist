@@ -1,28 +1,28 @@
-[gd_scene load_steps=5 format=3 uid="uid://cwx21h4j7sjew"]
+[gd_scene load_steps=5 format=3 uid="uid://coj2rl8omb7i6"]
 
-[ext_resource type="Script" uid="uid://ify3yhs1rnef" path="res://Scenes/Items/BlueSolution.gd" id="1_uylsm"]
-[ext_resource type="Texture2D" uid="uid://cr7ykd7sgkbky" path="res://Assets/Potions/BlueSolution.png" id="2_in327"]
-[ext_resource type="AudioStream" uid="uid://cff82wbf4qj24" path="res://Assets/Sounds/put on table.wav" id="3_in327"]
-[ext_resource type="Shape2D" uid="uid://cbs5qsojtmqui" path="res://Scenes/Items/Itemcollisionshape.tres" id="3_vi05m"]
+[ext_resource type="Shape2D" uid="uid://cbs5qsojtmqui" path="res://Scenes/Items/Itemcollisionshape.tres" id="1_6x6ji"]
+[ext_resource type="Script" uid="uid://trio1cl60lmw" path="res://Scenes/Items/red_brimstone.gd" id="1_7rbet"]
+[ext_resource type="Texture2D" uid="uid://cod6qd736elb2" path="res://Assets/Metals/Red Brim.png" id="1_sv0ls"]
+[ext_resource type="AudioStream" uid="uid://cff82wbf4qj24" path="res://Assets/Sounds/put on table.wav" id="2_sv0ls"]
 
-[node name="BlueSolution" type="Node2D"]
-script = ExtResource("1_uylsm")
-ItemName = "Blue Solution"
-ItemIdentity = 7
-CanBeAgitated = true
-CanBeDistilled = true
+[node name="redBrimstone" type="Node2D"]
+script = ExtResource("1_7rbet")
+ItemName = "Red Brimstone"
+ItemIdentity = 33
+CanBeInfused = true
+infIsInfusive = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_in327")
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_sv0ls")
 
 [node name="Area2D" type="Area2D" parent="." groups=["craftingobject"]]
-collision_layer = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = ExtResource("3_vi05m")
+shape = ExtResource("1_6x6ji")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_in327")
+stream = ExtResource("2_sv0ls")
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]

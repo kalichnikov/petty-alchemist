@@ -1,28 +1,28 @@
-[gd_scene load_steps=5 format=3 uid="uid://c6kv3uv4h3ytj"]
+[gd_scene load_steps=5 format=3 uid="uid://7hgpdn73w02a"]
 
-[ext_resource type="Texture2D" uid="uid://co2u4lf63xdp7" path="res://Assets/Potions/RedVitae.png" id="1_sqbna"]
-[ext_resource type="Script" uid="uid://cy3manb8y40sd" path="res://Scenes/Items/red_vitae.gd" id="1_t4d5f"]
-[ext_resource type="AudioStream" uid="uid://cff82wbf4qj24" path="res://Assets/Sounds/put on table.wav" id="2_t4d5f"]
-[ext_resource type="Shape2D" uid="uid://cbs5qsojtmqui" path="res://Scenes/Items/Itemcollisionshape.tres" id="3_jb71v"]
+[ext_resource type="Script" uid="uid://clpmlkqq8b11" path="res://Scenes/Items/unrefined_metal.gd" id="1_0v4gm"]
+[ext_resource type="Texture2D" uid="uid://bo05yjsft2qnn" path="res://Assets/Metals/unrefined metal.png" id="1_lw6kj"]
+[ext_resource type="Shape2D" uid="uid://cbs5qsojtmqui" path="res://Scenes/Items/Itemcollisionshape.tres" id="2_0v4gm"]
+[ext_resource type="AudioStream" uid="uid://cff82wbf4qj24" path="res://Assets/Sounds/put on table.wav" id="3_ks0he"]
 
-[node name="RedVitae" type="Node2D"]
-script = ExtResource("1_t4d5f")
-ItemName = "Red Vitae"
-ItemIdentity = 3675
-CanBeDistilled = true
+[node name="Unrefined Metal" type="Node2D"]
+script = ExtResource("1_0v4gm")
+ItemName = "Unrefined Metal"
 CanBeInfused = true
-infIsInfusive = true
+infIsMetal = true
+metalClass = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_sqbna")
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_lw6kj")
 
 [node name="Area2D" type="Area2D" parent="." groups=["craftingobject"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = ExtResource("3_jb71v")
+shape = ExtResource("2_0v4gm")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("2_t4d5f")
+stream = ExtResource("3_ks0he")
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]

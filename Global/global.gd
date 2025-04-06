@@ -28,3 +28,41 @@ func phase1craft(val1: int, val2: int) -> String:
 	elif newval % 343 == 0: created = "blue_solution"
 	else: created = "boom"
 	return created
+
+func phase2craft(val1_style: int, val1: int, val2: int) -> String:
+	var created: String
+	if val1_style == 1: 
+		created = unref_metal_craft(val2)
+	elif val1_style == 2:
+		created = base_metal_craft(val1, val2)
+	elif val1_style == 3:
+		created = noble_metal_craft(val1, val2)
+	elif val1_style == 4:
+		created = pure_metal_craft(val1, val2)
+	else: created = "no effect"
+	return created
+
+func unref_metal_craft(val2: int) -> String:
+	var created: String
+	var unrefined_dict = {11: "boom", 1575: "blue_brimstone", 2205: "green_brimstone", 3675: "red_brimstone", 17325: "lead", 24255: "iron", 40425: "potassium", 1157625: "brimstone"}
+	if unrefined_dict.has(val2): created = unrefined_dict[val2]
+	else: created = "no effect"
+	return created
+
+func base_metal_craft(val1: int, val2: int) -> String:
+	var created: String
+	
+	
+	return created
+
+func noble_metal_craft(val1: int, val2: int) -> String:
+	var created: String
+	
+	
+	return created
+
+func pure_metal_craft(val1: int, val2: int) -> String:
+	var created: String
+	
+	
+	return created

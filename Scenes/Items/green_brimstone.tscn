@@ -1,28 +1,28 @@
-[gd_scene load_steps=5 format=3 uid="uid://c6kv3uv4h3ytj"]
+[gd_scene load_steps=5 format=3 uid="uid://cssivculhln70"]
 
-[ext_resource type="Texture2D" uid="uid://co2u4lf63xdp7" path="res://Assets/Potions/RedVitae.png" id="1_sqbna"]
-[ext_resource type="Script" uid="uid://cy3manb8y40sd" path="res://Scenes/Items/red_vitae.gd" id="1_t4d5f"]
-[ext_resource type="AudioStream" uid="uid://cff82wbf4qj24" path="res://Assets/Sounds/put on table.wav" id="2_t4d5f"]
-[ext_resource type="Shape2D" uid="uid://cbs5qsojtmqui" path="res://Scenes/Items/Itemcollisionshape.tres" id="3_jb71v"]
+[ext_resource type="Shape2D" uid="uid://cbs5qsojtmqui" path="res://Scenes/Items/Itemcollisionshape.tres" id="1_6g7n0"]
+[ext_resource type="Script" uid="uid://dvkg6uijxexbw" path="res://Scenes/Items/green_brimstone.gd" id="1_av523"]
+[ext_resource type="Texture2D" uid="uid://dltnl2og10d5m" path="res://Assets/Metals/Green Brim.png" id="1_q6maf"]
+[ext_resource type="AudioStream" uid="uid://cff82wbf4qj24" path="res://Assets/Sounds/put on table.wav" id="2_q6maf"]
 
-[node name="RedVitae" type="Node2D"]
-script = ExtResource("1_t4d5f")
-ItemName = "Red Vitae"
-ItemIdentity = 3675
-CanBeDistilled = true
+[node name="GreenBrimstone" type="Node2D"]
+script = ExtResource("1_av523")
+ItemName = "Green Brimstone"
+ItemIdentity = 55
 CanBeInfused = true
 infIsInfusive = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_sqbna")
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_q6maf")
 
 [node name="Area2D" type="Area2D" parent="." groups=["craftingobject"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = ExtResource("3_jb71v")
+shape = ExtResource("1_6g7n0")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("2_t4d5f")
+stream = ExtResource("2_q6maf")
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]

@@ -3,14 +3,14 @@
 [ext_resource type="Texture2D" uid="uid://38mcsh1w36hy" path="res://Assets/Potions/AquaVitae.png" id="1_gl5at"]
 [ext_resource type="Script" uid="uid://bi3p4iqmpegi3" path="res://Scenes/Items/aqua_vitae.gd" id="1_yo602"]
 [ext_resource type="AudioStream" uid="uid://cff82wbf4qj24" path="res://Assets/Sounds/put on table.wav" id="2_yo602"]
+[ext_resource type="Shape2D" uid="uid://cbs5qsojtmqui" path="res://Scenes/Items/Itemcollisionshape.tres" id="3_ix8ai"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_ix8ai"]
-
-[node name="AquaVitae" type="Node2D"]
+[node name="AquaVitae" type="Node2D" groups=["craftingobject"]]
 script = ExtResource("1_yo602")
 ItemName = "Aqua Vitae"
 ItemIdentity = 1157625
 CanBeInfused = true
+infIsInfusive = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_gl5at")
@@ -18,7 +18,7 @@ texture = ExtResource("1_gl5at")
 [node name="Area2D" type="Area2D" parent="." groups=["craftingobject"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("CircleShape2D_ix8ai")
+shape = ExtResource("3_ix8ai")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_yo602")

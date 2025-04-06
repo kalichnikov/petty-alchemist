@@ -1,28 +1,29 @@
-[gd_scene load_steps=5 format=3 uid="uid://bdg5inmtul7jv"]
+[gd_scene load_steps=5 format=3 uid="uid://dwdijc0of8wgi"]
 
-[ext_resource type="Script" uid="uid://denu3mj3hidac" path="res://Scenes/Items/yellow_solution.gd" id="1_m7n0w"]
-[ext_resource type="Texture2D" uid="uid://bgvyi8k7yrod1" path="res://Assets/Potions/YellowSolution.png" id="2_eivub"]
-[ext_resource type="Shape2D" uid="uid://cbs5qsojtmqui" path="res://Scenes/Items/Itemcollisionshape.tres" id="3_eivub"]
-[ext_resource type="AudioStream" uid="uid://cff82wbf4qj24" path="res://Assets/Sounds/put on table.wav" id="3_r40fi"]
+[ext_resource type="Script" uid="uid://dxgj42475exvd" path="res://Scenes/Items/brimstone.gd" id="1_5115e"]
+[ext_resource type="Texture2D" uid="uid://dnwmwwh6b7px6" path="res://Assets/Metals/Brimstone.png" id="1_seuoa"]
+[ext_resource type="Shape2D" uid="uid://cbs5qsojtmqui" path="res://Scenes/Items/Itemcollisionshape.tres" id="1_tw672"]
+[ext_resource type="AudioStream" uid="uid://cff82wbf4qj24" path="res://Assets/Sounds/put on table.wav" id="2_seuoa"]
 
-[node name="YellowSolution" type="Node2D"]
-script = ExtResource("1_m7n0w")
-ItemName = "Yellow Solution"
-ItemIdentity = 15
-CanBeAgitated = true
+[node name="brimstone" type="Node2D"]
+script = ExtResource("1_5115e")
+ItemName = "Brimstone"
+ItemIdentity = 11
 CanBeDistilled = true
+CanBeInfused = true
+infIsInfusive = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_eivub")
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_seuoa")
 
 [node name="Area2D" type="Area2D" parent="." groups=["craftingobject"]]
-collision_layer = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = ExtResource("3_eivub")
+shape = ExtResource("1_tw672")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_r40fi")
+stream = ExtResource("2_seuoa")
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]

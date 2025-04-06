@@ -1,28 +1,28 @@
-[gd_scene load_steps=5 format=3 uid="uid://c6kv3uv4h3ytj"]
+[gd_scene load_steps=5 format=3 uid="uid://bwb35lw3hdbgr"]
 
-[ext_resource type="Texture2D" uid="uid://co2u4lf63xdp7" path="res://Assets/Potions/RedVitae.png" id="1_sqbna"]
-[ext_resource type="Script" uid="uid://cy3manb8y40sd" path="res://Scenes/Items/red_vitae.gd" id="1_t4d5f"]
-[ext_resource type="AudioStream" uid="uid://cff82wbf4qj24" path="res://Assets/Sounds/put on table.wav" id="2_t4d5f"]
-[ext_resource type="Shape2D" uid="uid://cbs5qsojtmqui" path="res://Scenes/Items/Itemcollisionshape.tres" id="3_jb71v"]
+[ext_resource type="Script" uid="uid://b44h1ceet4ecw" path="res://Scenes/Items/blue_brimstone.gd" id="1_bk4iy"]
+[ext_resource type="Shape2D" uid="uid://cbs5qsojtmqui" path="res://Scenes/Items/Itemcollisionshape.tres" id="1_q3lk4"]
+[ext_resource type="Texture2D" uid="uid://bl8yt0jw1cb5g" path="res://Assets/Metals/Blue Brim.png" id="1_xh22t"]
+[ext_resource type="AudioStream" uid="uid://cff82wbf4qj24" path="res://Assets/Sounds/put on table.wav" id="2_xh22t"]
 
-[node name="RedVitae" type="Node2D"]
-script = ExtResource("1_t4d5f")
-ItemName = "Red Vitae"
-ItemIdentity = 3675
-CanBeDistilled = true
+[node name="BlueBrimstone" type="Node2D"]
+script = ExtResource("1_bk4iy")
+ItemName = "Blue Brimstone"
+ItemIdentity = 77
 CanBeInfused = true
 infIsInfusive = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_sqbna")
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_xh22t")
 
 [node name="Area2D" type="Area2D" parent="." groups=["craftingobject"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = ExtResource("3_jb71v")
+shape = ExtResource("1_q3lk4")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("2_t4d5f")
+stream = ExtResource("2_xh22t")
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]
