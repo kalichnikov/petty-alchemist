@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://bd3wf2un2wylp"]
+[gd_scene load_steps=8 format=3 uid="uid://bd3wf2un2wylp"]
 
 [ext_resource type="Script" uid="uid://bus5a5wncn305" path="res://Scenes/main.gd" id="1_idj7w"]
 [ext_resource type="PackedScene" uid="uid://dqiqkjkeqkakk" path="res://Scenes/Methods/agitation.tscn" id="2_kln2b"]
 [ext_resource type="Texture2D" uid="uid://bgucv17xl6eu8" path="res://Assets/wood texture.jpg" id="2_rgh2o"]
 [ext_resource type="Script" uid="uid://wayquuwb565l" path="res://Scenes/MiscScripts/Inventory1.gd" id="4_pbw6q"]
+[ext_resource type="PackedScene" uid="uid://c6koak4a7gupx" path="res://Scenes/Methods/distillation.tscn" id="4_v1gob"]
 [ext_resource type="AudioStream" uid="uid://njmuhnoyyriv" path="res://Assets/Sounds/Retro Success Melody 01 - sawtooth lead 1.wav" id="5_pbw6q"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pbw6q"]
@@ -22,6 +23,9 @@ position = Vector2(640, 360)
 
 [node name="Agitation" parent="." instance=ExtResource("2_kln2b")]
 position = Vector2(185, 294)
+
+[node name="distillation" parent="." instance=ExtResource("4_v1gob")]
+position = Vector2(570, 294)
 
 [node name="InventorySlots" type="Node2D" parent="."]
 position = Vector2(4, 0)
@@ -300,6 +304,7 @@ color = Color(0.637843, 0.637843, 0.637843, 1)
 stream = ExtResource("5_pbw6q")
 
 [node name="CenterReference" type="Node2D" parent="."]
-position = Vector2(640, 360)
+position = Vector2(640, 502)
 
 [connection signal="agit_complete" from="Agitation" to="." method="_on_agitation_agit_complete"]
+[connection signal="dist_complete" from="distillation" to="." method="_on_distillation_dist_complete"]

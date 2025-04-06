@@ -1,0 +1,113 @@
+[gd_scene load_steps=10 format=3 uid="uid://c6koak4a7gupx"]
+
+[ext_resource type="Script" uid="uid://dylux02mmj6xx" path="res://Scenes/Methods/distillation.gd" id="1_dpy54"]
+[ext_resource type="Texture2D" uid="uid://vex7ojro1nec" path="res://Assets/distill.png" id="1_mdeq0"]
+[ext_resource type="Texture2D" uid="uid://bqgryoompxxqe" path="res://Assets/infobutton.png" id="2_du7rx"]
+[ext_resource type="Texture2D" uid="uid://bffnfwo6xxpjt" path="res://Assets/combinebutton.png" id="3_alubn"]
+[ext_resource type="AudioStream" uid="uid://b7x5nf6awbvhq" path="res://Assets/Sounds/bubbles.wav" id="4_021wt"]
+[ext_resource type="AudioStream" uid="uid://bmty0pek5hg6l" path="res://Assets/Sounds/Retro FootStep Grass 01.wav" id="5_2nx7i"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rrla0"]
+size = Vector2(64, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mdeq0"]
+size = Vector2(64, 64)
+
+[sub_resource type="LabelSettings" id="LabelSettings_021wt"]
+font_size = 23
+
+[node name="distillation" type="Node2D"]
+script = ExtResource("1_dpy54")
+
+[node name="Distillationbutton" type="TextureButton" parent="."]
+offset_left = -65.0
+offset_top = -65.0
+offset_right = 160.0
+offset_bottom = 160.0
+scale = Vector2(0.6, 0.6)
+toggle_mode = true
+texture_normal = ExtResource("1_mdeq0")
+
+[node name="Crafting Slots" type="Node2D" parent="."]
+
+[node name="Slot 1" type="StaticBody2D" parent="Crafting Slots" groups=["CanBeDroppable", "Droppable"]]
+position = Vector2(-125, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Crafting Slots/Slot 1"]
+shape = SubResource("RectangleShape2D_rrla0")
+
+[node name="ColorRect" type="ColorRect" parent="Crafting Slots/Slot 1"]
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+mouse_filter = 2
+color = Color(0.639216, 0.639216, 0.639216, 1)
+
+[node name="Slot 2" type="StaticBody2D" parent="Crafting Slots" groups=["CanBeDroppable", "Droppable"]]
+position = Vector2(130, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Crafting Slots/Slot 2"]
+shape = SubResource("RectangleShape2D_rrla0")
+
+[node name="ColorRect" type="ColorRect" parent="Crafting Slots/Slot 2"]
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+mouse_filter = 2
+color = Color(0.639216, 0.639216, 0.639216, 1)
+
+[node name="Detectors" type="Node2D" parent="Crafting Slots"]
+
+[node name="DisSlot1Detector" type="Area2D" parent="Crafting Slots/Detectors"]
+position = Vector2(-125, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Crafting Slots/Detectors/DisSlot1Detector"]
+shape = SubResource("RectangleShape2D_mdeq0")
+
+[node name="DisSlot2Detector" type="Area2D" parent="Crafting Slots/Detectors"]
+position = Vector2(130, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Crafting Slots/Detectors/DisSlot2Detector"]
+shape = SubResource("RectangleShape2D_mdeq0")
+
+[node name="DistillationLabel" type="Label" parent="."]
+offset_left = -62.0
+offset_top = -99.0
+offset_right = 69.0
+offset_bottom = -32.0
+text = "Distillation
+"
+label_settings = SubResource("LabelSettings_021wt")
+
+[node name="InfoButton" type="TextureButton" parent="."]
+offset_left = 75.0
+offset_top = -96.0
+offset_right = 125.0
+offset_bottom = -46.0
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("2_du7rx")
+
+[node name="CombineButton" type="TextureButton" parent="."]
+offset_left = -65.0
+offset_top = 77.0
+offset_right = 160.0
+offset_bottom = 127.0
+scale = Vector2(0.6, 0.6)
+texture_normal = ExtResource("3_alubn")
+
+[node name="Sounds" type="Node" parent="."]
+
+[node name="Distill" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("4_021wt")
+
+[node name="Open" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("5_2nx7i")
+
+[connection signal="toggled" from="Distillationbutton" to="." method="_on_distillationbutton_toggled"]
+[connection signal="area_entered" from="Crafting Slots/Detectors/DisSlot1Detector" to="." method="_on_dis_slot_1_detector_area_entered"]
+[connection signal="area_exited" from="Crafting Slots/Detectors/DisSlot1Detector" to="." method="_on_dis_slot_1_detector_area_exited"]
+[connection signal="area_entered" from="Crafting Slots/Detectors/DisSlot2Detector" to="." method="_on_dis_slot_2_detector_area_entered"]
+[connection signal="area_exited" from="Crafting Slots/Detectors/DisSlot2Detector" to="." method="_on_dis_slot_2_detector_area_exited"]
+[connection signal="pressed" from="CombineButton" to="." method="_on_combine_button_pressed"]

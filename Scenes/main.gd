@@ -6,9 +6,14 @@ var loadexplosion = load(explosionpath)
 #loads and prepares crate scene to be instantiated later when needed
 var cratepath = "res://Scenes/crate.tscn"
 var loadcrate = load(cratepath)
+# vars for tracking when phases are unlocked
+var phase2progress : int = 0
+var phase3progress : int = 0
 
 
 func _ready() -> void:
+	#makes later phase methods invisible to start
+	#$distillation.visible = false
 	#script for spawning player starting materials
 	#vars for spawning starting materials
 	var potionpath
@@ -42,7 +47,11 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
-	pass
+	# logic for unlocking later methods
+	if phase2progress >= 2:
+		$distillation.visible = true
+	if phase3progress >= 2 and $distillation.visible:
+		print("Infusion is available")
 
 func _on_agitation_agit_complete(leftitem: Node2D, rightitem: Node2D, created: String) -> void:
 	# clears crafted items
@@ -62,6 +71,36 @@ func _on_agitation_agit_complete(leftitem: Node2D, rightitem: Node2D, created: S
 		itempack = load(itemscenepath)
 		iteminstance = itempack.instantiate()
 		add_child(iteminstance)
+		if iteminstance.CanBeDistilled:
+			phase2progress += 1
+		if iteminstance.CanBeInfused:
+			phase3progress += 1
 		iteminstance.global_position = $Agitation.global_position
 		iteminstance.global_position.y = $Agitation.global_position.y + 150.0
+		$AudioStreamPlayer.play()
+
+func _on_distillation_dist_complete(leftitem: Node2D, rightitem: Node2D, created: String) -> void:
+	# clears crafted items
+	leftitem.queue_free()
+	rightitem.queue_free()
+	# if craft failed, explodes
+	if created == "boom":
+		var boominstance = loadexplosion.instantiate()
+		add_child(boominstance)
+		boominstance.global_position = $distillation.global_position
+	#if craft was successful, spawns required item
+	else:
+		var itemscenepath: String # holds filepath of item to be spawned
+		var itempack # loads item to be spawned
+		var iteminstance # creates instance of item to be spawned
+		itemscenepath = "res://Scenes/Items/" + created + ".tscn"
+		itempack = load(itemscenepath)
+		iteminstance = itempack.instantiate()
+		add_child(iteminstance)
+		if iteminstance.CanBeDistilled:
+			phase2progress += 1
+		if iteminstance.CanBeInfused:
+			phase3progress += 1
+		iteminstance.global_position = $distillation.global_position
+		iteminstance.global_position.y = $distillation.global_position.y + 150.0
 		$AudioStreamPlayer.play()
