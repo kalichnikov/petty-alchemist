@@ -11,6 +11,7 @@ ItemName = "Blue Brimstone"
 ItemIdentity = 77
 CanBeInfused = true
 infIsInfusive = true
+Description = "A rotten-smelling powder with a bluish-yellow tint."
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.25, 0.25)

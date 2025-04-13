@@ -12,6 +12,7 @@ ItemIdentity = 1575
 CanBeDistilled = true
 CanBeInfused = true
 infIsInfusive = true
+Description = "A blue-tinged substance defined by what it lacks."
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_c3nh8")

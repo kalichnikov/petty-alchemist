@@ -9,12 +9,30 @@ var loadcrate = load(cratepath)
 # vars for tracking when phases are unlocked
 var phase2progress : int = 0
 var phase3progress : int = 0
+@export var patronMood : float = 10000.0
+@export var labRebuildCost : float
+@export var supplyCost : float
+@export var textCost : float
+var patronStartingMood : int
+var moodThreshold1 : float
+var moodThreshold2 : float
+var moodThreshold3 : float
+var moodThreshold4 : float
 
 func _ready() -> void:
-	#sets inventoryzone color
-	$"Inventory Zone/ColorRect".modulate = Color(Color.LIGHT_GRAY, 0.7)
 	#makes later phase methods invisible to start
-	#$distillation.visible = false
+	$distillation.visible = false
+	$Infusion.visible = false
+	#checks character creation rules
+	if global.char_patience == true:
+		var adjustment = 2/3
+		var newMood = patronMood * adjustment
+		patronMood = newMood
+	patronStartingMood = patronMood
+	moodThreshold1 = patronStartingMood * 5 / 6
+	moodThreshold2 = patronStartingMood * 4 / 6
+	moodThreshold3 = patronStartingMood * 3 / 6
+	moodThreshold4 = patronStartingMood * 2 / 6
 	#script for spawning player starting materials
 	#vars for spawning starting materials
 	var potionpath
@@ -52,7 +70,18 @@ func _process(_delta: float) -> void:
 	if phase2progress >= 2:
 		$distillation.visible = true
 	if phase3progress >= 2 and $distillation.visible:
-		print("Infusion is available")
+		$Infusion.visible = true
+	#logic for adjusting patron mood
+	if patronMood >= moodThreshold1: 
+		$UIs/PatronMood/mood_face.texture = load("res://Assets/Moods/stage1.png")
+	elif patronMood <= moodThreshold2: 
+		$UIs/PatronMood/mood_face.texture = load("res://Assets/Moods/stage2.png")
+	elif patronMood <= moodThreshold3: 
+		$UIs/PatronMood/mood_face.texture = load("res://Assets/Moods/stage3.png")
+	elif patronMood <= moodThreshold4: 
+		$UIs/PatronMood/mood_face.texture = load("res://Assets/Moods/stage4.png")
+	elif patronMood <= 0: 
+		get_tree().change_scene_to_file("res://Scenes/GameEnd/game_over.tscn")
 
 func _on_agitation_agit_complete(leftitem: Node2D, rightitem: Node2D, created: String) -> void:
 	# clears crafted items
@@ -60,6 +89,7 @@ func _on_agitation_agit_complete(leftitem: Node2D, rightitem: Node2D, created: S
 	rightitem.queue_free()
 	# if craft failed, explodes
 	if created == "boom":
+		lab_rebuild()
 		var boominstance = loadexplosion.instantiate()
 		add_child(boominstance)
 		boominstance.global_position = $Agitation.global_position
@@ -81,11 +111,13 @@ func _on_agitation_agit_complete(leftitem: Node2D, rightitem: Node2D, created: S
 		$AudioStreamPlayer.play()
 
 func _on_distillation_dist_complete(leftitem: Node2D, rightitem: Node2D, created: String) -> void:
-	# clears crafted items
+	
+	#clears crafted items
 	leftitem.queue_free()
 	rightitem.queue_free()
-	# if craft failed, explodes
+	#if craft failed, explodes
 	if created == "boom":
+		lab_rebuild()
 		var boominstance = loadexplosion.instantiate()
 		add_child(boominstance)
 		boominstance.global_position = $distillation.global_position
@@ -105,3 +137,84 @@ func _on_distillation_dist_complete(leftitem: Node2D, rightitem: Node2D, created
 		iteminstance.global_position = $distillation.global_position
 		iteminstance.global_position.y = $distillation.global_position.y + 150.0
 		$AudioStreamPlayer.play()
+
+func _on_infusion_inf_complete(leftitem: Node2D, rightitem: Node2D, created: String) -> void:
+	if created == "no effect":
+		$Infusion.no_effect()
+	elif created == "gold":
+		#game win logic
+		leftitem.queue_free()
+		rightitem.queue_free()
+		get_tree().change_scene_to_file("res://Scenes/GameEnd/game_win.tscn")
+	# if craft failed, explodes
+	elif created == "boom":
+		lab_rebuild()
+		# clears crafted items
+		leftitem.queue_free()
+		rightitem.queue_free()
+		var boominstance = loadexplosion.instantiate()
+		add_child(boominstance)
+		boominstance.global_position = $Infusion.global_position
+	#if craft was successful, spawns required item
+	else:
+		# clears crafted items
+		leftitem.queue_free()
+		rightitem.queue_free()
+		var itemscenepath: String # holds filepath of item to be spawned
+		var itempack # loads item to be spawned
+		var iteminstance # creates instance of item to be spawned
+		itemscenepath = "res://Scenes/Items/" + created + ".tscn"
+		itempack = load(itemscenepath)
+		iteminstance = itempack.instantiate()
+		add_child(iteminstance)
+		if iteminstance.CanBeDistilled:
+			phase2progress += 1
+		if iteminstance.CanBeInfused:
+			phase3progress += 1
+		iteminstance.global_position = $Infusion.global_position
+		iteminstance.global_position.y = $Infusion.global_position.y + 150.0
+		$AudioStreamPlayer.play()
+
+func lab_rebuild():
+	patronMood -= labRebuildCost
+
+
+func _on_bg_music_1_finished() -> void:
+	await get_tree().create_timer(20.0).timeout
+	$BGMusic2.play()
+
+func _on_bg_music_2_finished() -> void:
+	await get_tree().create_timer(20.0).timeout
+	$BGMusic1.play()
+
+func craftable_Descrition(ItemName, Description):
+	$UIs/PatronMood/ItemName/Label.text = ItemName
+	$UIs/PatronMood/ItemDescription/Label.text = Description
+
+func craftable_Unhovered():
+	$UIs/PatronMood/ItemName/Label.text = ""
+	$UIs/PatronMood/ItemDescription/Label.text = ""
+
+
+func _on_shop_pressed() -> void:
+	#player buys new materials
+	patronMood -= supplyCost
+	#vars for spawning starting materials
+	var materialpath
+	var loadmaterial
+	var materialinstance
+	#spawning crate scene
+	var crateinstance = loadcrate.instantiate()
+	add_child(crateinstance)
+	crateinstance.global_position = $CenterReference.global_position
+	var shopitems = ["red_solution", "green_solution", "blue_solution", "magenta_solution", "yellow_solution", "cyan_solution", "white_solution", "unrefined_metal"]
+	var crateslotnumber: int = 0
+	var crateslots = crateinstance.get_child(1)
+	for i in range(6):
+		var nextitem = shopitems.pick_random()
+		materialpath = "res://Scenes/Items/" + nextitem + ".tscn"
+		loadmaterial = load(materialpath)
+		materialinstance = loadmaterial.instantiate()
+		add_child(materialinstance)
+		materialinstance.global_position = crateslots.get_child(crateslotnumber).global_position
+		crateslotnumber += 1

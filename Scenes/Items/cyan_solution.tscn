@@ -11,6 +11,7 @@ ItemName = "Cyan Solution"
 ItemIdentity = 35
 CanBeAgitated = true
 CanBeDistilled = true
+Description = "A cyan-colored derived solution."
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_jgrg2")

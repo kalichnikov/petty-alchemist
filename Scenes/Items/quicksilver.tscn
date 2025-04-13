@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://bhm8gm5pom7yl"]
+
+[ext_resource type="Texture2D" uid="uid://bbywyrod7evqg" path="res://Assets/Metals/Quicksilver.png" id="1_i8q2w"]
+[ext_resource type="Script" uid="uid://cjtm82utyc3eh" path="res://Scenes/Items/quicksilver.gd" id="1_qf7xw"]
+[ext_resource type="AudioStream" uid="uid://cff82wbf4qj24" path="res://Assets/Sounds/put on table.wav" id="2_qf7xw"]
+[ext_resource type="Shape2D" uid="uid://cbs5qsojtmqui" path="res://Scenes/Items/Itemcollisionshape.tres" id="3_3y7y5"]
+
+[node name="quicksilver" type="Node2D"]
+script = ExtResource("1_qf7xw")
+ItemName = "Quicksilver"
+ItemIdentity = 13
+CanBeInfused = true
+infIsMetal = true
+metalClass = 3
+Description = "One of the Noble metals."
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_i8q2w")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_qf7xw")
+
+[node name="Area2D" type="Area2D" parent="." groups=["craftingobject"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = ExtResource("3_3y7y5")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]

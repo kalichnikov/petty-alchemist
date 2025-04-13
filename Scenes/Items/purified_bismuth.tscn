@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://ddphp26h6vggs"]
+
+[ext_resource type="Script" uid="uid://ddxt247npxeb5" path="res://Scenes/Items/purified_bismuth.gd" id="1_3pd6d"]
+[ext_resource type="Texture2D" uid="uid://c1gnrmnxj4m6g" path="res://Assets/Metals/Purified Bismuth.png" id="1_bn2xt"]
+[ext_resource type="AudioStream" uid="uid://cff82wbf4qj24" path="res://Assets/Sounds/put on table.wav" id="2_3pd6d"]
+[ext_resource type="Shape2D" uid="uid://cbs5qsojtmqui" path="res://Scenes/Items/Itemcollisionshape.tres" id="3_utmvc"]
+
+[node name="purified_bismuth" type="Node2D"]
+script = ExtResource("1_3pd6d")
+ItemName = "Purified Bismuth"
+ItemIdentity = 3
+CanBeInfused = true
+infIsMetal = true
+metalClass = 4
+Description = "A Noble metal cleansed of all impurity."
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_bn2xt")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_3pd6d")
+
+[node name="Area2D" type="Area2D" parent="." groups=["craftingobject"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = ExtResource("3_utmvc")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]

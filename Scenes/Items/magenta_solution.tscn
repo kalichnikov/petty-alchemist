@@ -11,6 +11,7 @@ ItemName = "Magenta Solution"
 ItemIdentity = 21
 CanBeAgitated = true
 CanBeDistilled = true
+Description = "A magenta-colored derived solution."
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_uw3uc")

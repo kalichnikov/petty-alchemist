@@ -17,6 +17,7 @@ func _ready() -> void:
 	#makes slots invisible to start
 	$"Crafting Slots".visible = false
 	$CombineButton.visible = false
+	$"No Effect".visible = false
 
 func _process(_delta):
 	#behavior for opening craft button when both slots are filled
@@ -96,3 +97,10 @@ func clear_crafting_slots():
 	rightfilled = false
 	rightitemID = 0
 	rightitem = null
+
+func no_effect():
+	$"No Effect".visible = true
+	$AnimationPlayer.play()
+	get_tree().create_timer(4.0).timeout
+	$"No Effect".visible = false
+	

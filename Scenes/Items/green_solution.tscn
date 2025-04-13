@@ -11,6 +11,7 @@ ItemName = "Green Solution"
 ItemIdentity = 5
 CanBeAgitated = true
 CanBeDistilled = true
+Description = "A green-colored solution."
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_mcpay")

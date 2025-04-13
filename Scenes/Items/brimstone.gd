@@ -7,15 +7,26 @@ extends Node2D
 @export var CanBeInfused : bool
 @export var infIsMetal : bool
 @export var infIsInfusive : bool
+@export_range(0, 5) var metalClass : int
 var draggable = false
 var is_inside_droppable = false
 var body_ref
 var overlapping = false
 var offset: Vector2
 var initialPos : Vector2
+@export var Description: String
+
 
 func _ready():
-	pass # Replace with function body.
+	if CanBeAgitated and CanBeDistilled: 
+		Description += " It can be combined with agitation or distillation."
+	elif CanBeAgitated: 
+		Description += " It can be combined with other solutions via agitaiton."
+	elif CanBeDistilled: 
+		Description += " It can be combined with other solutions via distillation."
+	if CanBeInfused: 
+		if infIsInfusive: Description += " It can be infused into metals."
+		elif infIsMetal: Description += "  It can be infused to change its essence."
 
 func _process(_delta: float) -> void:
 	if draggable: 
@@ -34,23 +45,25 @@ func _process(_delta: float) -> void:
 			else:
 				tween.tween_property(self,"global_position",initialPos,0.2).set_ease(Tween.EASE_OUT)
 
-
+#these two funcs ensure only picks up item player is trying to pick up
 func _on_area_2d_mouse_entered() -> void:
 	if not global.is_dragging:
 		draggable = true
-		scale = Vector2(0.3, 0.3)
+		scale = Vector2(1.05, 1.05)
+		get_parent().craftable_Descrition(ItemName, Description)
 func _on_area_2d_mouse_exited() -> void:
 	if not global.is_dragging:
 		draggable = false
-		scale = Vector2(0.25, 0.25)
+		scale = Vector2(1, 1)
+		get_parent().craftable_Unhovered()
 
-
-func _on_area_2d_body_entered(body: Node2D) -> void:
+func _on_area_2d_body_entered(body: StaticBody2D) -> void:
+	#detects when object is placed near crafting slot
 	if body.is_in_group("Droppable"):
 		is_inside_droppable = true
 		body.modulate = Color(Color.DARK_GRAY, 1)
 		body_ref = body
-func _on_area_2d_body_exited(body: Node2D) -> void:
+func _on_area_2d_body_exited(body: StaticBody2D) -> void:
 	#detects when object leaves crafting slot
 	if body.is_in_group("Droppable"):
 		is_inside_droppable = false

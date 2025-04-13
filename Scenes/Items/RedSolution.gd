@@ -11,9 +11,18 @@ var body_ref
 var overlapping = false
 var offset: Vector2
 var initialPos : Vector2
+@export var Description: String
+
 
 func _ready():
-	pass # Replace with function body.
+	if CanBeAgitated and CanBeDistilled: 
+		Description += " It can be combined with agitation or distillation."
+	elif CanBeAgitated: 
+		Description += " It can be combined with other solutions via agitaiton."
+	elif CanBeDistilled: 
+		Description += " It can be combined with other solutions via distillation."
+	if CanBeInfused: 
+		Description += " It can also be infused into metals."
 
 func _process(_delta: float) -> void:
 	if draggable: 
@@ -37,10 +46,12 @@ func _on_area_2d_mouse_entered() -> void:
 	if not global.is_dragging:
 		draggable = true
 		scale = Vector2(1.05, 1.05)
+		get_parent().craftable_Descrition(ItemName, Description)
 func _on_area_2d_mouse_exited() -> void:
 	if not global.is_dragging:
 		draggable = false
 		scale = Vector2(1, 1)
+		get_parent().craftable_Unhovered()
 
 func _on_area_2d_body_entered(body: StaticBody2D) -> void:
 	#detects when object is placed near crafting slot

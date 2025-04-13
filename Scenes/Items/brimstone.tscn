@@ -12,6 +12,7 @@ ItemIdentity = 11
 CanBeDistilled = true
 CanBeInfused = true
 infIsInfusive = true
+Description = "A powered yellow crystal with a rotten scent."
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.25, 0.25)

@@ -12,6 +12,7 @@ ItemIdentity = 3675
 CanBeDistilled = true
 CanBeInfused = true
 infIsInfusive = true
+Description = "A red-tinged substance defined by what it lacks."
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_sqbna")

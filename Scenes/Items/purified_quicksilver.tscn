@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://vw6w1k11xtym"]
+
+[ext_resource type="Texture2D" uid="uid://cd53h7bjckt02" path="res://Assets/Metals/Purified Quicksilver.png" id="1_h3uvu"]
+[ext_resource type="Script" uid="uid://ct5v74orw7prg" path="res://Scenes/Items/purified_quicksilver.gd" id="1_k6yik"]
+[ext_resource type="AudioStream" uid="uid://cff82wbf4qj24" path="res://Assets/Sounds/put on table.wav" id="2_k6yik"]
+[ext_resource type="Shape2D" uid="uid://cbs5qsojtmqui" path="res://Scenes/Items/Itemcollisionshape.tres" id="3_ggqpp"]
+
+[node name="purified_quicksilver" type="Node2D"]
+script = ExtResource("1_k6yik")
+ItemName = "Purified Quicksilver"
+ItemIdentity = 5
+CanBeInfused = true
+infIsMetal = true
+metalClass = 4
+Description = "A Noble metal cleansed of all impurity."
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_h3uvu")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_k6yik")
+
+[node name="Area2D" type="Area2D" parent="." groups=["craftingobject"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = ExtResource("3_ggqpp")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]

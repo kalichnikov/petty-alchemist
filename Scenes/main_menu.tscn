@@ -1,0 +1,110 @@
+[gd_scene load_steps=6 format=3 uid="uid://1ccsseojht2e"]
+
+[ext_resource type="Texture2D" uid="uid://bgucv17xl6eu8" path="res://Assets/wood texture.jpg" id="1_1ehe0"]
+[ext_resource type="Script" uid="uid://08ln07dcnkkw" path="res://Scenes/main_menu.gd" id="1_ce3w2"]
+[ext_resource type="Texture2D" uid="uid://v58qxxw3kxpa" path="res://Assets/crate.png" id="2_ce3w2"]
+[ext_resource type="AudioStream" uid="uid://cf4egfbbsco2j" path="res://Assets/Music/PatronMad.mp3" id="3_n45e2"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_opfnp"]
+font_size = 50
+
+[node name="Main Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ce3w2")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 640.0
+offset_bottom = 636.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.667, 0.667)
+texture = ExtResource("1_1ehe0")
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_ce3w2")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Petty Alchemist"
+label_settings = SubResource("LabelSettings_opfnp")
+
+[node name="Control" type="Control" parent="CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+
+[node name="StartGame" type="Button" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Start Game"
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -132.0
+offset_bottom = -29.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
+custom_minimum_size = Vector2(1280, 77)
+layout_mode = 0
+offset_top = 29.0
+offset_right = 1280.0
+offset_bottom = 106.0
+color = Color(0, 0, 0, 0.784314)
+
+[node name="CenterContainer" type="CenterContainer" parent="Control"]
+custom_minimum_size = Vector2(1280, 50)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -640.0
+offset_top = -77.0
+offset_right = 640.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Label" type="Label" parent="Control/CenterContainer"]
+custom_minimum_size = Vector2(1280, 0)
+layout_mode = 2
+text = "A disgraced no-name alchemist, one day the envoy of a minor noble sends you a letter. The lord is young, and comparatively poor, but ambitious. He will offer you patronage in exchange for transmuting for him gold. Can you complete your task before your new patron grows tired of your missteps?"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_n45e2")
+autoplay = true
+
+[connection signal="pressed" from="CenterContainer/VBoxContainer/StartGame" to="." method="_on_start_game_pressed"]

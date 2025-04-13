@@ -1,0 +1,71 @@
+[gd_scene load_steps=6 format=3 uid="uid://bgnorh3hi15uy"]
+
+[ext_resource type="Texture2D" uid="uid://db2bdfupqomr7" path="res://Assets/Metals/gold.png" id="1_bdv7u"]
+[ext_resource type="Script" uid="uid://bwe8yfe4xd1qm" path="res://Scenes/GameEnd/game_win.gd" id="1_oq7mw"]
+[ext_resource type="AudioStream" uid="uid://wvmq2vgsh8o6" path="res://Assets/Music/WinMusic.mp3" id="2_0sbee"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_0sbee"]
+font_size = 50
+
+[sub_resource type="LabelSettings" id="LabelSettings_oq7mw"]
+font_size = 20
+
+[node name="GameWin" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_oq7mw")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.413997, 0.00217108, 0.834995, 1)
+metadata/_edit_lock_ = true
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "You have transmuted gold!"
+label_settings = SubResource("LabelSettings_0sbee")
+horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("1_bdv7u")
+stretch_mode = 3
+
+[node name="Label2" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Through tireless effort under mountainous pressure, your name will now be inscribed into history."
+label_settings = SubResource("LabelSettings_oq7mw")
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Return to the Main Menu"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_0sbee")
+autoplay = true
+
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]

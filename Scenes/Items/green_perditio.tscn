@@ -10,6 +10,7 @@ script = ExtResource("1_xvakv")
 ItemName = "Green Perditio"
 ItemIdentity = 525
 CanBeDistilled = true
+Description = "An unbalanced solution with an excess of green."
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_d5vwq")

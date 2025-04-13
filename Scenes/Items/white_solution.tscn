@@ -11,6 +11,7 @@ ItemName = "White Solution"
 ItemIdentity = 105
 CanBeAgitated = true
 CanBeDistilled = true
+Description = "A pure white composite solution."
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_uduf2")
