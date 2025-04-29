@@ -92,6 +92,7 @@ toggle_mode = true
 texture_normal = ExtResource("1_rr7wp")
 
 [node name="Crafting Slots" type="Node2D" parent="."]
+visible = false
 
 [node name="Slot 1" type="StaticBody2D" parent="Crafting Slots" groups=["CanBeDroppable", "Droppable"]]
 position = Vector2(-125, 0)

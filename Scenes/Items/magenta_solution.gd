@@ -5,6 +5,9 @@ extends Node2D
 @export var CanBeAgitated : bool
 @export var CanBeDistilled: bool
 @export var CanBeInfused : bool
+@export var infIsMetal : bool
+@export var infIsInfusive : bool
+@export_range(0, 5) var metalClass : int
 var draggable = false
 var is_inside_droppable = false
 var body_ref
@@ -22,7 +25,8 @@ func _ready():
 	elif CanBeDistilled: 
 		Description += " It can be combined with other solutions via distillation."
 	if CanBeInfused: 
-		Description += " It can also be infused into metals."
+		if infIsInfusive: Description += " It can be infused into metals."
+		elif infIsMetal: Description += "  It can be infused to change its essence."
 
 func _process(_delta: float) -> void:
 	if draggable: 

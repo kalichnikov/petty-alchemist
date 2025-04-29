@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="Petty Alchemist"
+run/main_scene="uid://1ccsseojht2e"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -22,6 +23,7 @@ global="*res://Global/global.gd"
 
 window/size/viewport_width=1280
 window/size/viewport_height=720
+window/size/resizable=false
 
 [global_group]
 

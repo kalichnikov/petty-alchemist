@@ -25,14 +25,14 @@ func _ready() -> void:
 	$Infusion.visible = false
 	#checks character creation rules
 	if global.char_patience == true:
-		var adjustment = 2/3
+		var adjustment: float = 2.0 / 3.0
 		var newMood = patronMood * adjustment
 		patronMood = newMood
 	patronStartingMood = patronMood
-	moodThreshold1 = patronStartingMood * 5 / 6
-	moodThreshold2 = patronStartingMood * 4 / 6
-	moodThreshold3 = patronStartingMood * 3 / 6
-	moodThreshold4 = patronStartingMood * 2 / 6
+	moodThreshold1 = patronStartingMood * 5.0 / 6.0
+	moodThreshold2 = patronStartingMood * 4.0 / 6.0
+	moodThreshold3 = patronStartingMood * 3.0 / 6.0
+	moodThreshold4 = patronStartingMood * 2.0 / 6.0
 	#script for spawning player starting materials
 	#vars for spawning starting materials
 	var potionpath
@@ -72,7 +72,7 @@ func _process(_delta: float) -> void:
 	if phase3progress >= 2 and $distillation.visible:
 		$Infusion.visible = true
 	#logic for adjusting patron mood
-	if patronMood >= moodThreshold1: 
+	if patronMood <= moodThreshold1: 
 		$UIs/PatronMood/mood_face.texture = load("res://Assets/Moods/stage1.png")
 	elif patronMood <= moodThreshold2: 
 		$UIs/PatronMood/mood_face.texture = load("res://Assets/Moods/stage2.png")
@@ -188,12 +188,12 @@ func _on_bg_music_2_finished() -> void:
 	$BGMusic1.play()
 
 func craftable_Descrition(ItemName, Description):
-	$UIs/PatronMood/ItemName/Label.text = ItemName
-	$UIs/PatronMood/ItemDescription/Label.text = Description
+	$UIs/Node/ItemName/Label.text = ItemName
+	$UIs/Node/ItemDescription/Label.text = Description
 
 func craftable_Unhovered():
-	$UIs/PatronMood/ItemName/Label.text = ""
-	$UIs/PatronMood/ItemDescription/Label.text = ""
+	$UIs/Node/ItemName/Label.text = ""
+	$UIs/Node/ItemDescription/Label.text = ""
 
 
 func _on_shop_pressed() -> void:

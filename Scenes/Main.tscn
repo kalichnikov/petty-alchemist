@@ -316,10 +316,10 @@ text = "Journal"
 
 [node name="Shop" type="Button" parent="UIs"]
 layout_mode = 0
-offset_left = 6.0
-offset_top = 575.0
-offset_right = 111.0
-offset_bottom = 629.0
+offset_left = 488.0
+offset_top = 9.0
+offset_right = 593.0
+offset_bottom = 63.0
 text = "Order Materials
 "
 autowrap_mode = 2
@@ -347,32 +347,34 @@ offset_bottom = 632.0
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("8_50glp")
 
-[node name="ItemName" type="ColorRect" parent="UIs/PatronMood"]
-layout_mode = 0
+[node name="Node" type="Node" parent="UIs"]
+
+[node name="ItemName" type="ColorRect" parent="UIs/Node"]
 offset_left = 1125.0
-offset_top = 390.0
+offset_top = 280.0
 offset_right = 1279.0
-offset_bottom = 430.0
+offset_bottom = 320.0
 color = Color(0.172549, 0.172549, 0.172549, 0.784314)
 
-[node name="Label" type="Label" parent="UIs/PatronMood/ItemName"]
+[node name="Label" type="Label" parent="UIs/Node/ItemName"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = 1.0
+offset_bottom = 23.0
 grow_horizontal = 2
 grow_vertical = 2
 horizontal_alignment = 2
 
-[node name="ItemDescription" type="ColorRect" parent="UIs/PatronMood"]
-layout_mode = 0
+[node name="ItemDescription" type="ColorRect" parent="UIs/Node"]
 offset_left = 1125.0
-offset_top = 430.0
+offset_top = 320.0
 offset_right = 1279.0
-offset_bottom = 603.0
+offset_bottom = 493.0
 color = Color(0.172549, 0.172549, 0.172549, 0.784314)
 
-[node name="Label" type="Label" parent="UIs/PatronMood/ItemDescription"]
+[node name="Label" type="Label" parent="UIs/Node/ItemDescription"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
